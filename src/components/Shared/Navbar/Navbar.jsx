@@ -8,17 +8,17 @@ import { FaAlignJustify, FaBell } from "react-icons/fa6";
 const Navbar = () => {
   const location = useLocation()
 
-  const navLinks = <><NavLink className={location.pathname === '/' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/">Home</NavLink>
+  const navLinks = <>
+  <NavLink className={location.pathname === '/' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/">Home</NavLink>
     <NavLink className={location.pathname === '/meals' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/meals">Meals</NavLink>
     <NavLink className={location.pathname === '/upcomingMeals' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/upcomingMeals">Upcoming Meals</NavLink>
-    
   </>
 
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='border-b-[1px]'>
         <Container>
-          <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
+          <div className='flex flex-row items-center justify-between gap-3 md:gap-0'>
             <div className="navbar">
               <div className="navbar-start">
                 <div className="dropdown">
@@ -29,7 +29,7 @@ const Navbar = () => {
                     {navLinks}
                   </div>
                 </div>
-                <div className='flex items-center gap-2'>
+                <div className='flex items-center'>
                   <img className='w-12 md:w-16' src={logoImg} alt="logo" />
                   <h1 className='text-2xl md:text-4xl font-bold text-myColor'>DineSmart</h1>
                 </div>
@@ -41,8 +41,8 @@ const Navbar = () => {
               </div>
               <div className="navbar-end">
                 <div className='flex gap-3 items-center'>
-                  <Link to='/signup'><button className='px-4 py-1 border-[2px] border-myColor rounded-lg '>JoinUs</button></Link>
-                  <NavLink className={location.pathname === '/notification' && 'text-white text-center font-semibold bg-[#b1dcd8] px-2 py-1 rounded-md'} to="/notification"><FaBell className='text-myColor text-2xl'></FaBell></NavLink>
+                  <Link to='/login'><button className='px-4 py-1 border-[2px] border-myColor rounded-lg hover:bg-myColor hover:text-white'>JoinUs</button></Link>
+                  <NavLink className={location.pathname === '/notification' && 'text-white text-center font-semibold bg-[#b1dcd8] px-2 py-1 rounded-md'} to="/notification"><FaBell className='text-myColor text-3xl hover:scale-125 transition-all ease-in-out'></FaBell></NavLink>
                   <MenuDropdown />
                 </div>
               </div>

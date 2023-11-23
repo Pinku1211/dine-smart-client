@@ -9,7 +9,7 @@ const MenuDropdown = () => {
   const { user } = useAuth()
 
   return (
-    <div className='relative'>
+    <div className='relative hover:scale-110 transition-all ease-in-out'>
       <div className='flex flex-row items-center gap-3'>
         {/* Dropdown btn */}
         <div

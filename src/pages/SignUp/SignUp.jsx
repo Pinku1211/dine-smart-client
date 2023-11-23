@@ -3,33 +3,27 @@ import { FcGoogle } from 'react-icons/fc'
 
 const SignUp = () => {
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
-        <div className='mb-8 text-center'>
-          <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm text-gray-400'>Welcome to StayVista</p>
-        </div>
+    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-lg">
+        <h1 className="text-center text-2xl font-bold text-myColor sm:text-3xl">
+          Get started today
+        </h1>
         <form
-          noValidate=''
-          action=''
-          className='space-y-6 ng-untouched ng-pristine ng-valid'
+          className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >
-          <div className='space-y-4'>
-            <div>
-              <label htmlFor='email' className='block mb-2 text-sm'>
-                Name
-              </label>
+          <p className="text-center text-lg font-medium">Sign up to your account</p>
+          <div>
+            <label for="name" className="sr-only">Name</label>
+            <div className="relative">
               <input
-                type='text'
-                name='name'
-                id='name'
-                placeholder='Enter Your Name Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
+                type="text"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder="Enter Name"
               />
             </div>
-            <div>
-              <label htmlFor='image' className='block mb-2 text-sm'>
+          </div>
+          <div className='px-4'>
+              <label for='image' className='block mb-2 text-sm text-gray-400'>
                 Select Image:
               </label>
               <input
@@ -40,69 +34,61 @@ const SignUp = () => {
                 accept='image/*'
               />
             </div>
-            <div>
-              <label htmlFor='email' className='block mb-2 text-sm'>
-                Email address
-              </label>
-              <input
-                type='email'
-                name='email'
-                id='email'
-                required
-                placeholder='Enter Your Email Here'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-                data-temp-mail-org='0'
-              />
-            </div>
-            <div>
-              <div className='flex justify-between'>
-                <label htmlFor='password' className='text-sm mb-2'>
-                  Password
-                </label>
-              </div>
-              <input
-                type='password'
-                name='password'
-                autoComplete='new-password'
-                id='password'
-                required
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-              />
-            </div>
-          </div>
 
           <div>
-            <button
-              type='submit'
-              className='bg-rose-500 w-full rounded-md py-3 text-white'
-            >
-              Continue
-            </button>
-          </div>
-        </form>
-        <div className='flex items-center pt-4 space-x-1'>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
-            Signup with social accounts
-          </p>
-          <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-        </div>
-        <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
-          <FcGoogle size={32} />
+            <label for="email" className="sr-only">Email</label>
+            <div className="relative">
+              <input
+                type="email"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder="Enter email"
+              />
 
-          <p>Continue with Google</p>
-        </div>
-        <p className='px-6 text-sm text-center text-gray-400'>
-          Already have an account?{' '}
-          <Link
-            to='/login'
-            className='hover:underline hover:text-rose-500 text-gray-600'
+              <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div>
+            <label for="password" className="sr-only">Password</label>
+            <div className="relative">
+              <input
+                type="password"
+                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                placeholder="Enter password"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="block w-full rounded-lg bg-myColor px-5 py-3 text-sm font-medium text-white"
           >
-            Login
-          </Link>
-          .
-        </p>
+            Sign up
+          </button>
+
+          <hr />
+          <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-myColor border-rounded cursor-pointer rounded-lg'>
+            <FcGoogle size={32} />
+            <p>Continue with Google</p>
+          </div>
+          <p className="text-center text-sm text-gray-500">
+            Already have an account?
+            <Link to='/login' className='ml-2 text-myColor hover:border-b-2 hover:border-myColor'>Sign In</Link>
+          </p>
+        </form>
       </div>
     </div>
 
