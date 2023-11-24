@@ -1,26 +1,32 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { useForm } from 'react-hook-form'
 import useAuth from '../../hooks/useAuth'
 import Swal from 'sweetalert2'
+import { imageUpload } from '../../hooks/imageUpload'
 
 const SignUp = () => {
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
 
-  const {createUser} = useAuth();
+  const {createUser, updateUserProfile} = useAuth();
+  const navigate = useNavigate()
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data)
+    console.log(data.image[0])
+    const image = data.image[0]
+    const imageData = await imageUpload(image)
+    console.log(imageData?.data?.display_url)
     createUser(data.email, data.password)
     .then(res => {
       const loggedUser = res.user 
       console.log(loggedUser)
+      updateUserProfile(data.name, imageData?.data?.display_url)
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -28,6 +34,7 @@ const SignUp = () => {
         showConfirmButton: false,
         timer: 1500
       });
+      navigate('/')
       
     })
   
@@ -61,7 +68,7 @@ const SignUp = () => {
                 Select Image:
               </label>
               <input
-                // {...register("image", { required: true })}
+                {...register("image", { required: true })}
                 type='file'
                 id='image'
                 accept='image/*'

@@ -1,7 +1,35 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import useAuth from '../../hooks/useAuth'
+import Swal from 'sweetalert2'
+import { useState } from 'react'
 
 const Login = () => {
+  const {signIn} = useAuth()
+  const [loginError, setLoginError] = useState('');
+  const navigate = useNavigate()
+
+  const handleLogin = e => {
+    e.preventDefault();
+    setLoginError('')
+    const form = new FormData(e.currentTarget);
+    const email = form.get('email')
+    const password = form.get('password')
+    const image = form.get
+    console.log(email, password)
+
+    signIn(email, password)
+        .then(result => {
+            new Swal("Logged in successfully!");
+            navigate(location?.state ? location.state : "/")
+        })
+        .catch(error => {
+            setLoginError(error.message);
+
+        })
+}
+
+
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg">
@@ -9,6 +37,7 @@ const Login = () => {
           Log in Now
         </h1>
         <form
+          onSubmit={handleLogin}
           className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
         >
           <p className="text-center text-lg font-medium">Sign in to your account</p>
@@ -16,6 +45,7 @@ const Login = () => {
             <label for="email" className="sr-only">Email</label>
             <div className="relative">
               <input
+                name="email"
                 type="email"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter email"
@@ -43,6 +73,7 @@ const Login = () => {
             <label for="password" className="sr-only">Password</label>
             <div className="relative">
               <input
+                name="password"
                 type="password"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
@@ -65,7 +96,9 @@ const Login = () => {
             Don't have any account?
             <Link to='/signup' className='ml-2 text-myColor hover:border-b-2 hover:border-myColor'>Sign up</Link>
           </p>
+          <p className="text-red-600 text-center">{loginError}</p>
         </form>
+        
       </div>
     </div>
   )

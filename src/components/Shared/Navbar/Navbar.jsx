@@ -8,10 +8,10 @@ import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
   const location = useLocation()
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const navLinks = <>
-  <NavLink className={location.pathname === '/' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/">Home</NavLink>
+    <NavLink className={location.pathname === '/' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/">Home</NavLink>
     <NavLink className={location.pathname === '/meals' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/meals">Meals</NavLink>
     <NavLink className={location.pathname === '/upcomingMeals' ? 'text-white text-center font-semibold bg-myColor px-2 py-1 rounded-md' : "font-semibold"} to="/upcomingMeals">Upcoming Meals</NavLink>
   </>
@@ -44,7 +44,7 @@ const Navbar = () => {
               <div className="navbar-end">
                 <div className='flex gap-3 items-center'>
                   {
-                    user || <Link to='/login'><button className='px-4 py-1 border-[2px] border-myColor rounded-lg hover:bg-myColor hover:text-white'>JoinUs</button></Link>
+                    user ? '' : <Link to='/login'><button className='px-4 py-1 border-[2px] border-myColor rounded-lg hover:bg-myColor hover:text-white'>JoinUs</button></Link>
                   }
                   <NavLink className={location.pathname === '/notification' && 'text-white text-center font-semibold bg-[#b1dcd8] px-2 py-1 rounded-md'} to="/notification"><FaBell className='text-myColor text-3xl hover:scale-125 transition-all ease-in-out'></FaBell></NavLink>
                   <MenuDropdown />
