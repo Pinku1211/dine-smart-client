@@ -16,7 +16,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm()
 
-  const {createUser, updateUserProfile} = useAuth();
+  const { createUser, updateUserProfile, signInWithGoogle } = useAuth();
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
@@ -24,34 +24,63 @@ const SignUp = () => {
     const imageData = await imageUpload(image)
     setError('')
     createUser(data.email, data.password)
-    .then(res => {
-      const loggedUser = res.user 
-      console.log(loggedUser)
-      updateUserProfile(data.name, imageData?.data?.display_url)
+      .then(res => {
+        const loggedUser = res.user
+        console.log(loggedUser)
+        updateUserProfile(data.name, imageData?.data?.display_url)
+        navigate('/')
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Account has been created successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        
+
+        // save user
+        const savedUser = saveUser(loggedUser)
+        console.log(savedUser)
+
+        // token
+        getToken(loggedUser?.email)
+        navigate('/')
+
+      })
+      .then(error => {
+        setError(error)
+      })
+
+  }
+
+  // google sign up
+  const handleGoogleSignIn = async () => {
+
+    try {
+      const result = await signInWithGoogle()
+
+      // save user to the database
+      const savedUser = await saveUser(result?.user)
+      console.log(savedUser)
+      // token
+      await getToken(result?.user?.email)
+      navigate('/')
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Account has been created successfully",
+        title: "Account created successfully",
         showConfirmButton: false,
         timer: 1500
       });
-      navigate('/')
 
-       // save user
-      const savedUser = saveUser(loggedUser)
-      console.log(savedUser)
+    } catch(error){
+      console.log(error)
 
-      // token
-      getToken(loggedUser?.email)
-      
-    })
-    .then(error => {
-      setError(error)
-    })
-  
+    }
+
   }
 
- 
+
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -77,17 +106,17 @@ const SignUp = () => {
             </div>
           </div>
           <div className='px-4'>
-              <label for='image' className='block mb-2 text-sm text-gray-400'>
-                Select Image:
-              </label>
-              <input
-                {...register("image", { required: true })}
-                type='file'
-                id='image'
-                accept='image/*'
-              />
-              {errors.image && <span className='text-red-600'>Image is required</span>}
-            </div>
+            <label for='image' className='block mb-2 text-sm text-gray-400'>
+              Select Image:
+            </label>
+            <input
+              {...register("image", { required: true })}
+              type='file'
+              id='image'
+              accept='image/*'
+            />
+            {errors.image && <span className='text-red-600'>Image is required</span>}
+          </div>
 
           <div>
             <label for="email" className="sr-only">Email</label>
@@ -122,12 +151,13 @@ const SignUp = () => {
             <label for="password" className="sr-only">Password</label>
             <div className="relative">
               <input
-                {...register("password", 
-                {required: true, 
-                  minLength: 6 ,
-                  maxLength: 15,
-                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].)(?=.*[a-z])/
-                })}
+                {...register("password",
+                  {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 15,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].)(?=.*[a-z])/
+                  })}
                 type="password"
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
@@ -146,7 +176,9 @@ const SignUp = () => {
           </button>
 
           <hr />
-          <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-myColor border-rounded cursor-pointer rounded-lg'>
+          <div
+            onClick={handleGoogleSignIn}
+            className='flex justify-center items-center space-x-2 border m-3 p-2 border-myColor border-rounded cursor-pointer rounded-lg'>
             <FcGoogle size={32} />
             <p>Continue with Google</p>
           </div>

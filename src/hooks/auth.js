@@ -13,11 +13,19 @@ export const saveUser = async user =>{
     return data;
 }
 
-
+// token generate
 export const getToken = async email => {
     const axiosSecure = useAxiosSecure();
     const {data} = await axiosSecure.post('/jwt', email)
     console.log("token -----", data)
 
     return data; 
+}
+
+// clear token
+export const clearToken = async () => {
+    const axiosSecure = useAxiosSecure();
+    const {data} = await axiosSecure.get('/logout');
+    return data;
+
 }

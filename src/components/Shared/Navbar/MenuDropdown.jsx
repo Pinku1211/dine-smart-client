@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
+import Swal from 'sweetalert2'
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -10,7 +11,15 @@ const MenuDropdown = () => {
 
   const handleLogOut = () => {
     logOut()
-    .then(() => {})
+    .then(() => {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Successfully logged out",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
     .then(error=> console.log(error))
   }
 
