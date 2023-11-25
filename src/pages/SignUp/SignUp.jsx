@@ -17,8 +17,6 @@ const SignUp = () => {
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-    console.log(data)
-    console.log(data.image[0])
     const image = data.image[0]
     const imageData = await imageUpload(image)
     console.log(imageData?.data?.display_url)
