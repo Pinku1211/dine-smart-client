@@ -4,8 +4,11 @@ import { useForm } from 'react-hook-form'
 import useAuth from '../../hooks/useAuth'
 import Swal from 'sweetalert2'
 import { imageUpload } from '../../hooks/imageUpload'
+import { getToken, saveUser } from '../../hooks/auth'
+import { useState } from 'react'
 
 const SignUp = () => {
+  const [error, setError] = useState('')
 
   const {
     register,
@@ -19,7 +22,7 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     const image = data.image[0]
     const imageData = await imageUpload(image)
-    console.log(imageData?.data?.display_url)
+    setError('')
     createUser(data.email, data.password)
     .then(res => {
       const loggedUser = res.user 
@@ -33,10 +36,22 @@ const SignUp = () => {
         timer: 1500
       });
       navigate('/')
+
+       // save user
+      const savedUser = saveUser(loggedUser)
+      console.log(savedUser)
+
+      // token
+      getToken(loggedUser?.email)
       
+    })
+    .then(error => {
+      setError(error)
     })
   
   }
+
+ 
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -135,6 +150,7 @@ const SignUp = () => {
             <FcGoogle size={32} />
             <p>Continue with Google</p>
           </div>
+          <p className='text-red-600'>{error}</p>
           <p className="text-center text-sm text-gray-500">
             Already have an account?
             <Link to='/login' className='ml-2 text-myColor hover:border-b-2 hover:border-myColor'>Sign In</Link>
