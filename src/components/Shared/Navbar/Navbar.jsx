@@ -43,11 +43,12 @@ const Navbar = () => {
               </div>
               <div className="navbar-end">
                 <div className='flex gap-3 items-center'>
-                  {
-                    user ? '' : <Link to='/login'><button className='px-4 py-1 border-[2px] border-myColor rounded-lg hover:bg-myColor hover:text-white'>JoinUs</button></Link>
-                  }
                   <NavLink className={location.pathname === '/notification' && 'text-white text-center font-semibold bg-[#b1dcd8] px-2 py-1 rounded-md'} to="/notification"><FaBell className='text-myColor text-3xl hover:scale-125 transition-all ease-in-out'></FaBell></NavLink>
-                  <MenuDropdown />
+                  {
+                    user ? <MenuDropdown /> : <Link to='/login'><button className='px-4 py-1 border-[2px] border-myColor rounded-lg hover:bg-myColor hover:text-white'>JoinUs</button></Link>
+                  }
+
+                  
                 </div>
               </div>
             </div>

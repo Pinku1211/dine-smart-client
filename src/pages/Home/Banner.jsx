@@ -9,7 +9,7 @@ const Banner = () => {
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Discover New Experience</h1>
                     <p className="mb-5">PLEASE COME HUNGRY. BUT PLEASE COME WITH PATIENCE DURING PEAK HOURS</p>
-                    <div className="relative hidden sm:block">
+                    <div className="relative">
                         <label className="sr-only" for="search"> Search </label>
 
                         <input
