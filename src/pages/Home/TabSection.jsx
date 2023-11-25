@@ -11,7 +11,12 @@ function classNames(...classes) {
 const TabSection = () => {
     const [meals] = useMeals();
     console.log(meals)
-    const categories = ['All', 'Breakfast', 'Lunch', 'Dinner']
+    const categories = ['All', 'Breakfast', 'Lunch', 'Dinner'];
+
+    const breakFast = meals?.filter(meal => meal.meal_type === 'Breakfast');
+    const lunch = meals?.filter(meal => meal.meal_type === 'Lunch');
+    const dinner = meals?.filter(meal => meal.meal_type === 'Dinner');
+
 
 
     return (
@@ -19,7 +24,7 @@ const TabSection = () => {
             <Container>
                 <Header title='Our Categories'></Header>
                 <Tab.Group>
-                    <Tab.List className="flex space-x-1 rounded-xl bg-myColor p-1">
+                    <Tab.List className="flex space-x-1 rounded-xl bg-myColor p-1 w-1/2 mx-auto">
                         {Object.keys(categories).map((category, idx) => (
                             <Tab
                                 key={category}
@@ -34,7 +39,7 @@ const TabSection = () => {
                                 }
                             >
                                 {categories[idx]}
-                                
+
                             </Tab>
                         ))}
 
@@ -45,9 +50,21 @@ const TabSection = () => {
                                 meals?.map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
                             }
                         </Tab.Panel>
-                        <Tab.Panel>Content 2</Tab.Panel>
-                        <Tab.Panel>Content 3</Tab.Panel>
-                        <Tab.Panel>Content 4</Tab.Panel>
+                        <Tab.Panel className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                            {
+                                breakFast?.map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
+                            }
+                        </Tab.Panel>
+                        <Tab.Panel className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                            {
+                                lunch?.map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
+                            }
+                        </Tab.Panel>
+                        <Tab.Panel className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                            {
+                                dinner?.map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
+                            }
+                        </Tab.Panel>
                     </Tab.Panels>
                 </Tab.Group>
             </Container>

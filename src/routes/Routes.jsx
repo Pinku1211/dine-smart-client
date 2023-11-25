@@ -30,6 +30,11 @@ export const router = createBrowserRouter([
         path: '/notification',
         element: <Notifications></Notifications>
       },
+      // {
+      //   path: '/meals/:id',
+      //   element: 
+      //   // loader: ({params}) => getMeal(params.id)
+      // }
     ],
   },
   { path: '/login', element: <Login /> },

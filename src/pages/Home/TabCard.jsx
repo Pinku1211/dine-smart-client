@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TabCard = ({ meal }) => {
 
-    const { meal_title, meal_image, rating, price } = meal;
+    const { meal_title, meal_image, rating, price, _id } = meal;
 
     return (
         <div className="card bg-base-100 shadow-xl pb-8">
@@ -13,7 +14,7 @@ const TabCard = ({ meal }) => {
                 <p className='text-myColor font-semibold'>Rating: {rating}</p>
             </div>
             <div className="card-actions justify-center">
-                <button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl">Details</button>
+                <Link to={`/meals/${_id}`}><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl">Details</button></Link>
             </div>
         </div>
     );
