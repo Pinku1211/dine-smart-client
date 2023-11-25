@@ -3,9 +3,10 @@ import { FcGoogle } from 'react-icons/fc'
 import useAuth from '../../hooks/useAuth'
 import Swal from 'sweetalert2'
 import { useState } from 'react'
+import { getToken, saveUser } from '../../hooks/auth'
 
 const Login = () => {
-  const {signIn} = useAuth()
+  const { signIn, signInWithGoogle } = useAuth()
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate()
 
@@ -19,16 +20,42 @@ const Login = () => {
     console.log(email, password)
 
     signIn(email, password)
-        .then(result => {
-            new Swal("Logged in successfully!");
-            navigate(location?.state ? location.state : "/")
-        })
-        .catch(error => {
-            setLoginError(error.message);
+      .then(result => {
+        navigate(location?.state ? location.state : "/")
+        new Swal("Logged in successfully!");
 
-        })
-}
+      })
+      .catch(error => {
+        setLoginError(error.message);
 
+      })
+  }
+
+  // google sign up
+  const handleGoogleSignIn = async () => {
+
+    try {
+      const result = await signInWithGoogle()
+
+      // save user to the database
+      const savedUser = await saveUser(result?.user)
+      console.log(savedUser)
+      // token
+      await getToken(result?.user?.email)
+      navigate(location?.state ? location.state : "/")
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Account created successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+    } catch(error){
+      console.log(error)
+
+    }
+  }
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -88,7 +115,9 @@ const Login = () => {
           </button>
 
           <hr />
-          <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-myColor border-rounded cursor-pointer rounded-lg'>
+          <div 
+          onClick={handleGoogleSignIn}
+          className='flex justify-center items-center space-x-2 border m-3 p-2 border-myColor border-rounded cursor-pointer rounded-lg'>
             <FcGoogle size={32} />
             <p>Continue with Google</p>
           </div>
@@ -98,7 +127,7 @@ const Login = () => {
           </p>
           <p className="text-red-600 text-center">{loginError}</p>
         </form>
-        
+
       </div>
     </div>
   )
