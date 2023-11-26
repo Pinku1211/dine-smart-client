@@ -9,6 +9,13 @@ import UpcomingMeals from '../pages/UpcomingMeals/UpcomingMeals'
 import Notifications from '../pages/Notification/Notifications'
 import MealDetails from '../pages/MealDetails/MealDetails'
 import { getMeal } from '../hooks/meal'
+import Dashboard from '../layouts/Dashboard'
+import AddMeals from '../components/Dashboard/Admin/AddMeals'
+import ManageUsers from '../components/Dashboard/Admin/ManageUsers'
+import AllMeals from '../components/Dashboard/Admin/AllMeals'
+import AllReviews from '../components/Dashboard/Admin/AllReviews'
+import ServeMeals from '../components/Dashboard/Admin/ServeMeals'
+import Upcoming from '../components/Dashboard/Admin/Upcoming'
 
 export const router = createBrowserRouter([
   {
@@ -41,4 +48,34 @@ export const router = createBrowserRouter([
   },
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <SignUp /> },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'add-meal',
+        element: <AddMeals></AddMeals>
+      },
+      {
+        path: 'manage-users',
+        element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: 'all-meals',
+        element: <AllMeals></AllMeals>
+      },
+      {
+        path: 'all-reviews',
+        element: <AllReviews></AllReviews>
+      },
+      {
+        path: 'serve-meals',
+        element: <ServeMeals></ServeMeals>
+      },
+      {
+        path: 'upcoming-meals',
+        element: <Upcoming></Upcoming>
+      }
+    ]
+  }
 ])
