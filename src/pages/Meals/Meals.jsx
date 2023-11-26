@@ -3,8 +3,16 @@ import { Helmet } from 'react-helmet-async';
 
 const Meals = () => {
     return (
-        <div>
+        <div className=''>
             {/* <Helmet><title>DineSmart | Meals</title></Helmet> */}
+            <h1>Meals</h1>
+            <h1>Meals</h1>
+            <h1>Meals</h1>
+            <h1>Meals</h1>
+            <h1>Meals</h1>
+            <h1>Meals</h1>
+            <h1>Meals</h1>
+            <h1>Meals</h1>
             <h1>Meals</h1>
         </div>
     );

@@ -24,7 +24,7 @@ const TabSection = () => {
             <Container>
                 <Header title='Our Categories'></Header>
                 <Tab.Group>
-                    <Tab.List className="flex space-x-1 rounded-xl bg-myColor p-1 w-1/2 mx-auto">
+                    <Tab.List className="flex space-x-1 rounded-xl bg-gradient-to-r from-cyan-500 to-myColor  p-1 w-1/2 mx-auto">
                         {Object.keys(categories).map((category, idx) => (
                             <Tab
                                 key={category}

@@ -7,6 +7,8 @@ import SignUp from '../pages/SignUp/SignUp'
 import Meals from '../pages/Meals/Meals'
 import UpcomingMeals from '../pages/UpcomingMeals/UpcomingMeals'
 import Notifications from '../pages/Notification/Notifications'
+import MealDetails from '../pages/MealDetails/MealDetails'
+import { getMeal } from '../hooks/meal'
 
 export const router = createBrowserRouter([
   {
@@ -30,11 +32,11 @@ export const router = createBrowserRouter([
         path: '/notification',
         element: <Notifications></Notifications>
       },
-      // {
-      //   path: '/meals/:id',
-      //   element: 
-      //   // loader: ({params}) => getMeal(params.id)
-      // }
+      {
+        path: '/meals/:id',
+        element: <MealDetails></MealDetails>,
+        loader: ({params}) => getMeal(params.id)
+      }
     ],
   },
   { path: '/login', element: <Login /> },
