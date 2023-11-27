@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { FaAlignCenter, FaBraille } from "react-icons/fa6";
-import MenuItem from './MenuItem';
+import { FaAlignCenter } from "react-icons/fa6";
 import Logo from '../../Shared/Logo/Logo';
 import { Link, useNavigate } from 'react-router-dom';
 import useRole from '../../../hooks/useRole';
@@ -8,6 +7,7 @@ import AdminMenu from '../Admin/AdminMenu';
 import UserMenu from '../User/UserMenu';
 import { CiLogout } from "react-icons/ci";
 import useAuth from '../../../hooks/useAuth';
+import MenuItem from './MenuItem';
 
 
 const Sidebar = () => {
@@ -70,9 +70,14 @@ const Sidebar = () => {
                         <div className='w-full md:hidden px-4 py-2 shadow-lg rounded-lg justify-center items-center mx-auto'>
                             <Link to='/'><Logo></Logo></Link>
                         </div>
+                        {/* If a user is host */}
+                        {/* <ToggleBtn toggleHandler={toggleHandler} /> */}
                         <nav>
                             {
-                                role === 'admin' ? <AdminMenu></AdminMenu> : <UserMenu></UserMenu>
+                                role === 'admin' && <AdminMenu></AdminMenu>
+                            }
+                            {
+                                role === 'user' && <UserMenu></UserMenu>
                             }
 
                             {/* Menu Items */}
@@ -82,6 +87,12 @@ const Sidebar = () => {
 
                 <div>
                     <hr />
+                    {
+                        role === 'admin' && <MenuItem
+                            label='Profile'
+                            address='profile'
+                        />
+                    }
                     <button
                         onClick={handleLogOut}
                         className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 rounded-lg hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>

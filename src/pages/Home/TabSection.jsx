@@ -18,7 +18,6 @@ const TabSection = () => {
     const dinner = meals?.filter(meal => meal.meal_type === 'Dinner');
 
 
-
     return (
         <div className='my-16'>
             <Container>

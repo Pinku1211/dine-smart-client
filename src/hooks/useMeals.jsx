@@ -13,7 +13,6 @@ const useMeals = () => {
         }
     })
 
-
     return [meals];
 };
 

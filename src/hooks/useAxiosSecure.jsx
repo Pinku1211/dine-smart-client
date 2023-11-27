@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React from 'react';
 import { clearToken } from './auth';
 
 const axiosSecure = axios.create({

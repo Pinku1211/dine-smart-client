@@ -36,3 +36,10 @@ export const getRole = async email => {
     const {data} = await axiosSecure.get(`/user/${email}`);
     return data.role;
 }
+
+// add meal
+export const addMeal = async meal => {
+    const axiosSecure = useAxiosSecure();
+    const {data} = await axiosSecure.post('/meals', meal)
+    return data;
+}

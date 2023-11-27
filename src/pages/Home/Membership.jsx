@@ -8,7 +8,7 @@ import platinumBadge from '../../assets/images/platinum.png'
 const Membership = () => {
     return (
         <div>
-            <Header title='Pick Your Badge'></Header>
+            <Header title='Pick Your Badge' subTitle='Get Our Premium services'></Header>
             <Container>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
                     <article

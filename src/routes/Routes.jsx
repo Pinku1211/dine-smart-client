@@ -19,6 +19,7 @@ import Upcoming from '../components/Dashboard/Admin/Upcoming'
 import MyProfile from '../components/Dashboard/User/MyProfile'
 import RequestedMeals from '../components/Dashboard/User/RequestedMeals'
 import MyReviews from '../components/Dashboard/User/MyReviews'
+import Profile from '../components/Dashboard/Admin/Profile'
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: 'upcoming-meals',
         element: <Upcoming></Upcoming>
+      },
+      {
+        path: 'profile',
+        element: <Profile></Profile>
       },
       {
         path: 'my-profile',
