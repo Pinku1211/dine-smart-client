@@ -5,7 +5,7 @@ export const saveUser = async user =>{
     const axiosSecure = useAxiosSecure();
     const currentUser = {
         email: user.email,
-        role: 'guest',
+        role: 'user',
         status: 'verified',
     }
     const {data} = await axiosSecure.put(`/users/${user?.email}`, currentUser)
@@ -28,4 +28,11 @@ export const clearToken = async () => {
     const {data} = await axiosSecure.get('/logout');
     return data;
 
+}
+
+// get user role
+export const getRole = async email => {
+    const axiosSecure = useAxiosSecure();
+    const {data} = await axiosSecure.get(`/user/${email}`);
+    return data.role;
 }

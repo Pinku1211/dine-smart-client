@@ -38,7 +38,7 @@ const MealDetails = () => {
                     <div className="p-4 border-2 rounded-md">
                         <h1 className="text-center mb-4 font-semibold text-xl text-red-400"> Our Customer Says</h1>
                         {
-                            reviews.map((review) => <div>
+                            reviews.map((review, idx) => <div key={idx}>
                             
                             <h1 className="text-myColor font-semibold"># {
                                 review.user

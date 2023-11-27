@@ -8,7 +8,7 @@ import { getToken, saveUser } from '../../hooks/auth'
 import { useState } from 'react'
 
 const SignUp = () => {
-  const [error, setError] = useState('')
+  // const [registerError, setRegisterError] = useState(null)
 
   const {
     register,
@@ -22,7 +22,6 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     const image = data.image[0]
     const imageData = await imageUpload(image)
-    setError('')
     createUser(data.email, data.password)
       .then(res => {
         const loggedUser = res.user
@@ -37,7 +36,6 @@ const SignUp = () => {
           timer: 1500
         });
         
-
         // save user
         const savedUser = saveUser(loggedUser)
         console.log(savedUser)
@@ -47,8 +45,9 @@ const SignUp = () => {
         navigate('/')
 
       })
-      .then(error => {
-        setError(error)
+      .catch(err => {
+        // setRegisterError(err)
+        console.log(err)
       })
 
   }
@@ -182,7 +181,9 @@ const SignUp = () => {
             <FcGoogle size={32} />
             <p>Continue with Google</p>
           </div>
-          <p className='text-red-600'>{error}</p>
+          {/* {
+            registerError ? <p className='text-red-600'>{registerError}</p> : ''
+          } */}
           <p className="text-center text-sm text-gray-500">
             Already have an account?
             <Link to='/login' className='ml-2 text-myColor hover:border-b-2 hover:border-myColor'>Sign In</Link>
