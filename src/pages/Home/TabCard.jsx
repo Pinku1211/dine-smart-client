@@ -14,7 +14,7 @@ const TabCard = ({ meal }) => {
                 <p className='text-myColor font-semibold'>Rating: {rating}</p>
             </div>
             <div className="card-actions justify-center">
-                <Link to={`/meals/${_id}`}><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl">Details</button></Link>
+                <Link to={`/meal/${_id}`}><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl">Details</button></Link>
             </div>
         </div>
     );

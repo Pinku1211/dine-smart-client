@@ -1,6 +1,6 @@
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import Swal from 'sweetalert2'
@@ -11,17 +11,18 @@ const MenuDropdown = () => {
 
   const handleLogOut = () => {
     logOut()
-    .then(() => {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Successfully logged out",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    })
-    .then(error=> console.log(error))
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Successfully logged out",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .then(error => console.log(error))
   }
+
 
   return (
     <div className='relative hover:scale-110 transition-all ease-in-out'>
@@ -49,7 +50,8 @@ const MenuDropdown = () => {
           <div className='flex flex-col'>
             <h1 className='px-4 py-3 transition font-semibold text-rose-500'>{user?.displayName}</h1>
             <Link
-              to='/dashboard'
+
+              to='/dashboard/manage-users'
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
             >
               Dashboard

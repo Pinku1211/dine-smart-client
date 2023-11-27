@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { imageUpload } from '../../hooks/imageUpload'
 import { getToken, saveUser } from '../../hooks/auth'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 const SignUp = () => {
   // const [registerError, setRegisterError] = useState(null)
@@ -28,13 +29,7 @@ const SignUp = () => {
         console.log(loggedUser)
         updateUserProfile(data.name, imageData?.data?.display_url)
         navigate('/')
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Account has been created successfully",
-          showConfirmButton: false,
-          timer: 1500
-        });
+        toast.success("successfully signed up!")
         
         // save user
         const savedUser = saveUser(loggedUser)
@@ -64,13 +59,7 @@ const SignUp = () => {
       // token
       await getToken(result?.user?.email)
       navigate('/')
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Account created successfully",
-        showConfirmButton: false,
-        timer: 1500
-      });
+      toast.success("successfully signed in!")
 
     } catch(error){
       console.log(error)

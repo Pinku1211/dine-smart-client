@@ -43,3 +43,15 @@ export const addMeal = async meal => {
     const {data} = await axiosSecure.post('/meals', meal)
     return data;
 }
+
+// delete meal
+export const deleteMeal = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.delete(`/dashboard/all-meals/meal/${id}`)
+}
+
+// update meal
+export const updateMeal = async id => {
+    const axiosSecure =useAxiosSecure()
+    const {data} = await axiosSecure.put(`/dashboard/all-meals/meal/${id}`)
+}

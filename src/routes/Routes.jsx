@@ -20,6 +20,7 @@ import MyProfile from '../components/Dashboard/User/MyProfile'
 import RequestedMeals from '../components/Dashboard/User/RequestedMeals'
 import MyReviews from '../components/Dashboard/User/MyReviews'
 import Profile from '../components/Dashboard/Admin/Profile'
+import Update from '../components/Dashboard/Admin/Update'
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ export const router = createBrowserRouter([
         element: <Notifications></Notifications>
       },
       {
-        path: '/meals/:id',
+        path: '/meal/:id',
         element: <MealDetails></MealDetails>,
         loader: ({params}) => getMeal(params.id)
       }
@@ -67,6 +68,16 @@ export const router = createBrowserRouter([
       {
         path: 'all-meals',
         element: <AllMeals></AllMeals>
+      },
+      {
+        path: 'all-meals/meal/:id',
+        element: <MealDetails></MealDetails>,
+        loader: ({params}) => getMeal(params.id)
+      },
+      {
+        path: 'all-meals/update/:id',
+        element: <Update></Update>,
+        loader: ({params}) => getMeal(params.id)
       },
       {
         path: 'all-reviews',

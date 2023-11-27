@@ -1,13 +1,15 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import Header from '../../Shared/Header/Header';
 import useAuth from '../../../hooks/useAuth';
-import { addMeal } from '../../../hooks/auth';
 import { imageUpload } from '../../../hooks/imageUpload';
+import { updateMeal } from '../../../hooks/auth';
 import toast from 'react-hot-toast';
 
-const AddMeals = () => {
+const Update = () => {
     const { user } = useAuth()
+    const meal = useLoaderData()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = async (data) => {
@@ -28,26 +30,23 @@ const AddMeals = () => {
         const admin_email = data?.admin_email
 
         const newMeal = { meal_title, meal_type, meal_image, ingredients, description, price, rating, post_time, likes, admin_name, admin_email }
+        console.log(newMeal)
         try {
-            const savedMeal = await addMeal(newMeal)
-            console.log(savedMeal)
-            toast.success("successfully added")
+            const updatedMeal = await updateMeal(newMeal)
+            console.log(updatedMeal)
+            toast.success("successfully updated")
         } catch (error) {
             console.log(error)
             toast.error("oops! something wrong.")
         }
     }
-
-
-
     return (
-
         <div>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
             >
-                <Header title='Add a Meal'></Header>
+                <Header title='Update MEAL'></Header>
                 <div className="relative">
                     <label className='ml-2 text-gray-400'>Meal Title</label>
                     <input
@@ -167,13 +166,12 @@ const AddMeals = () => {
                     type="submit"
                     className="block w-full rounded-lg bg-myColor px-5 py-3 text-sm font-medium text-white"
                 >
-                    Add
+                    Update
                 </button>
 
             </form>
         </div>
-
     );
 };
 
-export default AddMeals;
+export default Update;
