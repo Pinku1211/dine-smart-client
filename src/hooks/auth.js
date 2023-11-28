@@ -4,7 +4,8 @@ import useAxiosSecure from "./useAxiosSecure"
 export const saveUser = async user =>{
     const axiosSecure = useAxiosSecure();
     const currentUser = {
-        email: user.email,
+        name: user?.displayName,
+        email: user?.email,
         role: 'user',
         status: 'Bronze',
     }
@@ -37,6 +38,13 @@ export const getRole = async email => {
     return data.role;
 }
 
+// all users
+export const getUsers = async () => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.get(`/users/user`)
+    return data
+}
+
 // add meal
 export const addMeal = async meal => {
     const axiosSecure = useAxiosSecure();
@@ -51,7 +59,8 @@ export const deleteMeal = async id => {
 }
 
 // update meal
-export const updateMeal = async id => {
+export const updateMeal = async (id, newMeal) => {
     const axiosSecure =useAxiosSecure()
-    const {data} = await axiosSecure.put(`/dashboard/all-meals/meal/${id}`)
+    const {data} = await axiosSecure.put(`/dashboard/all-meals/meal/${id}`, newMeal)
 }
+

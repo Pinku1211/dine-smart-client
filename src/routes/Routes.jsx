@@ -56,6 +56,7 @@ export const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Dashboard></Dashboard>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: 'add-meal',

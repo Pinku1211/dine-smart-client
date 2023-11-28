@@ -5,16 +5,17 @@ import useAuth from '../../../hooks/useAuth';
 import { addMeal } from '../../../hooks/auth';
 import { imageUpload } from '../../../hooks/imageUpload';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const AddMeals = () => {
     const { user } = useAuth()
+    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = async (data) => {
         console.log(data)
         const image = data?.meal_image[0]
         const imageData = await imageUpload(image)
-        console.log(imageData)
         const meal_title = data?.meal_title
         const meal_type = data?.meal_type
         const meal_image = imageData?.data?.display_url
@@ -26,12 +27,12 @@ const AddMeals = () => {
         const likes = parseInt(data?.likes)
         const admin_name = data?.admin_name
         const admin_email = data?.admin_email
-
         const newMeal = { meal_title, meal_type, meal_image, ingredients, description, price, rating, post_time, likes, admin_name, admin_email }
+  
         try {
-            const savedMeal = await addMeal(newMeal)
-            console.log(savedMeal)
+            await addMeal(newMeal)
             toast.success("successfully added")
+            navigate('/dashboard/all-meals')
         } catch (error) {
             console.log(error)
             toast.error("oops! something wrong.")
@@ -124,7 +125,7 @@ const AddMeals = () => {
                 <label className='ml-2 text-gray-400'>Post Time</label>
                     <input
                         {...register("post_time", { required: true })}
-                        type="time"
+                        type="date"
                         className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                         placeholder="Time"
                     />
