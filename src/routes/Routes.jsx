@@ -21,6 +21,7 @@ import RequestedMeals from '../components/Dashboard/User/RequestedMeals'
 import MyReviews from '../components/Dashboard/User/MyReviews'
 import Profile from '../components/Dashboard/Admin/Profile'
 import Update from '../components/Dashboard/Admin/Update'
+import Payment from '../pages/Payment/Payment'
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
   },
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <SignUp /> },
+  {path: '/checkout/silver', element: <Payment badge="Silver"></Payment>},
+  {path: '/checkout/gold', element: <Payment badge="Gold"></Payment>},
+  {path: '/checkout/platinum', element: <Payment badge="Platinum"></Payment>},
+
   {
     path: '/dashboard',
     element: <Dashboard></Dashboard>,

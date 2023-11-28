@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import Header from '../../Shared/Header/Header';
 import useAuth from '../../../hooks/useAuth';
@@ -10,10 +10,13 @@ import { useNavigate } from 'react-router-dom';
 const AddMeals = () => {
     const { user } = useAuth()
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, watch, control, formState: { errors }} = useForm()
+    const [upcomingMeal, setUpcomingMeal] = useState(null)
+    console.log(watch("meal-type"))
 
     const onSubmit = async (data) => {
         console.log(data)
+        console.log()
         const image = data?.meal_image[0]
         const imageData = await imageUpload(image)
         const meal_title = data?.meal_title
@@ -28,17 +31,29 @@ const AddMeals = () => {
         const admin_name = data?.admin_name
         const admin_email = data?.admin_email
         const newMeal = { meal_title, meal_type, meal_image, ingredients, description, price, rating, post_time, likes, admin_name, admin_email }
-  
-        try {
-            await addMeal(newMeal)
-            toast.success("successfully added")
-            navigate('/dashboard/all-meals')
-        } catch (error) {
-            console.log(error)
-            toast.error("oops! something wrong.")
-        }
-    }
 
+        const clickedButton = watch('submitButton');
+         
+        if(clickedButton === 'add-meal') {
+            console.log('add-meal')
+        }else if (clickedButton === 'add-to-upcoming'){
+            console.log('upcoming')
+        }
+
+        // try {
+        //     await addMeal(newMeal)
+        //     toast.success("successfully added")
+        //     navigate('/dashboard/all-meals')
+        // } catch (error) {
+        //     console.log(error)
+        //     toast.error("oops! something wrong.")
+        // }
+
+        
+    }
+    // const handleAddToUpcoming = () => {
+    //     console.log('upcoming', upcomingMeal)
+    // }
 
 
     return (
@@ -62,6 +77,7 @@ const AddMeals = () => {
                 <div className="relative">
                 <label className='ml-2 text-gray-400'>Meal Type</label>
                     <input
+                        name='meal-type'
                         {...register("meal_type", { required: true })}
                         type="text"
                         className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
@@ -165,12 +181,22 @@ const AddMeals = () => {
                     {errors.email && <span className='text-red-600'>Email is required</span>}
                 </div>
                 <button
+                 
                     type="submit"
+                    name="submitButton"
+                    value="add-meal"
                     className="block w-full rounded-lg bg-myColor px-5 py-3 text-sm font-medium text-white"
                 >
-                    Add
+                    Add Meal
                 </button>
-
+                <button
+                    type='submit'
+                    name="submitButton"
+                    value="add-to-upcoming"
+                    className="block w-full rounded-lg bg-myColor px-5 py-3 text-sm font-medium text-white"
+                >
+                    Add to Upcoming
+                </button>
             </form>
         </div>
 

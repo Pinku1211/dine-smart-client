@@ -4,8 +4,12 @@ import Container from '../../components/Shared/Container';
 import silverBadge from '../../assets/images/silver.png'
 import goldBadge from '../../assets/images/gold.png'
 import platinumBadge from '../../assets/images/platinum.png'
+import { Link } from 'react-router-dom';
 
 const Membership = () => {
+
+
+
     return (
         <div>
             <Header title='Pick Your Badge' subTitle='Get Our Premium services'></Header>
@@ -71,7 +75,7 @@ const Membership = () => {
 
                                 </div>
                                 <div className="mt-4 flex justify-center">
-                                    <button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Get Started</button>
+                                    <Link to='/checkout/silver'><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Get Started</button></Link>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +140,7 @@ const Membership = () => {
 
                                 </div>
                                 <div className="mt-4 flex justify-center">
-                                    <button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Get Started</button>
+                                <Link to='/checkout/gold'><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Get Started</button></Link>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +205,7 @@ const Membership = () => {
 
                                 </div>
                                 <div className="mt-4 flex justify-center">
-                                    <button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Get Started</button>
+                                <Link to='/checkout/platinum'><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Get Started</button></Link>
                                 </div>
                             </div>
                         </div>

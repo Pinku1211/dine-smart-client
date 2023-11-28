@@ -41,8 +41,14 @@ export const getRole = async email => {
 // all users
 export const getUsers = async () => {
     const axiosSecure = useAxiosSecure()
-    const {data} = await axiosSecure.get(`/users/user`)
+    const {data} = await axiosSecure.get(`/users`)
     return data
+}
+// update user
+export const makeAdmin = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.put(`/user1/${id}`)
+    return data;
 }
 
 // add meal
