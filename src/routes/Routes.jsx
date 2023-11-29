@@ -22,6 +22,7 @@ import MyReviews from '../components/Dashboard/User/MyReviews'
 import Update from '../components/Dashboard/Admin/Update'
 import Payment from '../pages/Payment/Payment'
 import AdminProfile from '../components/Dashboard/Admin/AdminProfile'
+import Private from './Private/Private'
 
 export const router = createBrowserRouter([
   {
@@ -77,7 +78,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'all-meals/meal/:id',
-        element: <MealDetails></MealDetails>,
+        element: <Private><MealDetails></MealDetails></Private>,
         loader: ({params}) => getMeal(params.id)
       },
       {

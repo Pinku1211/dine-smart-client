@@ -3,13 +3,28 @@ import Container from "../../components/Shared/Container";
 import Header from "../../components/Shared/Header/Header";
 import { FaHeart } from "react-icons/fa6";
 import { useState } from "react";
+import { saveOrderedMeal } from "../../hooks/auth";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const MealDetails = () => {
     const [like, setLike] = useState(false)
-
+    const {user} = useAuth()
     const meal = useLoaderData();
     console.log(meal)
     const { meal_title, meal_image, rating, price, _id, admin_name, description, ingredients, post_time, reviews } = meal;
+
+    const handleOrder = async () => {
+        try {   
+            // save user to the database
+            const savedMeal = await saveOrderedMeal(meal, user)
+            console.log(savedMeal)
+            toast.success("successfully ordered!")
+      
+          } catch(error){
+            console.log(error)
+          }
+    }
 
     return (
         <div className="my-10">
@@ -32,7 +47,7 @@ const MealDetails = () => {
                                 }
                             </h1>
                         </div>
-                        <button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Request</button>
+                        <button onClick={handleOrder} className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl hover:scale-110 transition-all ease-in-out">Request</button>
                     </div>
 
                     <div className="p-4 border-2 rounded-md">

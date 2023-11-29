@@ -40,14 +40,14 @@ const AddMeals = () => {
             console.log('upcoming')
         }
 
-        // try {
-        //     await addMeal(newMeal)
-        //     toast.success("successfully added")
-        //     navigate('/dashboard/all-meals')
-        // } catch (error) {
-        //     console.log(error)
-        //     toast.error("oops! something wrong.")
-        // }
+        try {
+            await addMeal(newMeal)
+            toast.success("successfully added")
+            navigate('/dashboard/all-meals')
+        } catch (error) {
+            console.log(error)
+            toast.error("oops! something wrong.")
+        }
 
         
     }

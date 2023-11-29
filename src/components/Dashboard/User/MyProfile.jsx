@@ -7,6 +7,7 @@ import silverBadge from '../../../assets/images/silver.png'
 import goldBadge from '../../../assets/images/gold.png'
 import platinumBadge from '../../../assets/images/platinum.png'
 import bronzeBadge from '../../../assets/images/bronze.png'
+import Header from '../../Shared/Header/Header';
 
 const MyProfile = () => {
     const { user } = useAuth();
@@ -20,6 +21,7 @@ const MyProfile = () => {
 
     return (
         <Container>
+            <Header title='Your Profile'></Header>
             <div className='flex justify-center gap-8 mt-10'>
                 <div className='flex flex-col md:flex-row justify-center items-center gap-6'>
                     <div>

@@ -14,6 +14,26 @@ export const saveUser = async user =>{
     return data;
 }
 
+// save ordered meal
+export const saveOrderedMeal = async (meal, user) =>{
+    const axiosSecure = useAxiosSecure();
+    const requestedMeal = {
+        meal_title: meal?.meal_title,
+        email: user?.email,
+        user_name: user?.displayName,
+        status: 'Pending',
+    }
+    const {data} = await axiosSecure.post(`/requestedMeals`, requestedMeal)
+
+    return data;
+}
+// update meal status
+export const updateMealStatus = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.put(`/requestedMeals/${id}`)
+    return data;
+}
+
 // token generate
 export const getToken = async email => {
     const axiosSecure = useAxiosSecure();
@@ -82,4 +102,4 @@ export const updateMeal = async (id, newMeal) => {
     const axiosSecure =useAxiosSecure()
     const {data} = await axiosSecure.put(`/dashboard/all-meals/meal/${id}`, newMeal)
 }
-
+// 

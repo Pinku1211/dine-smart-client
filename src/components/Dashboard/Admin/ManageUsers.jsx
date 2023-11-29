@@ -21,7 +21,6 @@ const ManageUsers = () => {
         <div className="overflow-x-auto">
             <Header title='All Users'></Header>
             <table className="table">
-                {/* head */}
                 <thead>
                     <tr>
                         <th>#</th>
