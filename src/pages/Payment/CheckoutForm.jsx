@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import { changeStatus } from "../../hooks/auth";
 
 
 const CheckoutForm = ({badge}) => {
@@ -75,6 +76,9 @@ const CheckoutForm = ({badge}) => {
             console.log('payment intent', paymentIntent)
             if(paymentIntent.status === 'succeeded'){
                 toast.success("successfully paid")
+                const status = {badge}
+                changeStatus(user?.email, status)
+                console.log(status)
             }
         }
 

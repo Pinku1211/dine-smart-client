@@ -32,7 +32,7 @@ const ManageUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
+                    {/* {
                        users?.map((user, idx) => <tr key={user._id}>
                        <th>{1 + idx}</th>
                        <td>{user.name}</td>
@@ -42,7 +42,7 @@ const ManageUsers = () => {
                        }
                        <td>{user.status}</td>
                    </tr>) 
-                    }
+                    } */}
                     
                 </tbody>
             </table>

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 const UpcomingMeals = () => {
     return (
         <div>
-            {/* <Helmet><title>DineSmart | UpcomingMeals</title></Helmet> */}
+            <Helmet><title>DineSmart | UpcomingMeals</title></Helmet>
             <h1>Upcoming Meals</h1>
         </div>
     );

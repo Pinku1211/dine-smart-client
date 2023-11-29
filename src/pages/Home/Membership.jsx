@@ -8,10 +8,8 @@ import { Link } from 'react-router-dom';
 
 const Membership = () => {
 
-
-
     return (
-        <div>
+        <div className='py-10'>
             <Header title='Pick Your Badge' subTitle='Get Our Premium services'></Header>
             <Container>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>

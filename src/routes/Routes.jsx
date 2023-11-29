@@ -19,9 +19,9 @@ import Upcoming from '../components/Dashboard/Admin/Upcoming'
 import MyProfile from '../components/Dashboard/User/MyProfile'
 import RequestedMeals from '../components/Dashboard/User/RequestedMeals'
 import MyReviews from '../components/Dashboard/User/MyReviews'
-import Profile from '../components/Dashboard/Admin/Profile'
 import Update from '../components/Dashboard/Admin/Update'
 import Payment from '../pages/Payment/Payment'
+import AdminProfile from '../components/Dashboard/Admin/AdminProfile'
 
 export const router = createBrowserRouter([
   {
@@ -99,7 +99,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <Profile></Profile>
+        element: <AdminProfile></AdminProfile>
       },
       {
         path: 'my-profile',

@@ -15,7 +15,6 @@ const Sidebar = () => {
     const [role] = useRole();
     const { logOut } = useAuth()
     const navigate = useNavigate()
-    console.log(role)
 
     const handleToggle = () => {
         setActive(!isActive)

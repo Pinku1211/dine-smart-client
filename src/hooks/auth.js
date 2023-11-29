@@ -37,6 +37,19 @@ export const getRole = async email => {
     const {data} = await axiosSecure.get(`/user/${email}`);
     return data.role;
 }
+// get user status
+export const getStatus = async email => {
+    const axiosSecure = useAxiosSecure();
+    const {data} = await axiosSecure.get(`/user/${email}`);
+    return data.status;
+}
+
+// change status
+export const changeStatus = async (email, status) => {
+    const axiosSecure = useAxiosSecure();
+    const {data} = await axiosSecure.put(`/user/${email}`, status);
+    return data
+}
 
 // all users
 export const getUsers = async () => {

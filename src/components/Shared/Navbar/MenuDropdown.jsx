@@ -4,10 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import Swal from 'sweetalert2'
+import useRole from '../../../hooks/useRole'
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { user, logOut } = useAuth()
+  const [role] = useRole()
 
   const handleLogOut = () => {
     logOut()
@@ -51,7 +53,7 @@ const MenuDropdown = () => {
             <h1 className='px-4 py-3 transition font-semibold text-rose-500'>{user?.displayName}</h1>
             <Link
 
-              to='/dashboard/manage-users'
+              to={role === "admin" ? 'dashboard/manage-users' : 'dashboard/my-profile'}
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
             >
               Dashboard

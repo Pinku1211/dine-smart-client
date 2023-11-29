@@ -3,6 +3,8 @@ import useMeals from '../../hooks/useMeals';
 import Container from '../../components/Shared/Container';
 import TabCard from './TabCard';
 import Header from '../../components/Shared/Header/Header';
+import { Link } from 'react-router-dom';
+import { split } from 'postcss/lib/list';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -19,7 +21,7 @@ const TabSection = () => {
 
 
     return (
-        <div className='my-16'>
+        <div className='py-16 bg-slate-200'>
             <Container>
                 <Header title='Our Categories'></Header>
                 <Tab.Group>
@@ -46,7 +48,7 @@ const TabSection = () => {
                     <Tab.Panels className='my-10'>
                         <Tab.Panel className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                             {
-                                meals?.map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
+                                meals?.slice(0,6).map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
                             }
                         </Tab.Panel>
                         <Tab.Panel className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -66,6 +68,9 @@ const TabSection = () => {
                         </Tab.Panel>
                     </Tab.Panels>
                 </Tab.Group>
+                <div className='flex justify-center'>
+                    <Link to='/meals'><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor border-b-4 border-myColor rounded-xl">See All</button></Link>
+                </div>
             </Container>
         </div>
     );
