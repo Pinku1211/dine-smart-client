@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
 
   {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <Private><Dashboard></Dashboard></Private>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -100,7 +100,8 @@ export const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <AdminProfile></AdminProfile>
+        element: <AdminProfile></AdminProfile>,
+        
       },
       {
         path: 'my-profile',

@@ -42,7 +42,9 @@ const ServeMeals = () => {
                             <td>{meal.email}</td>
                             <td>{meal.user_name}</td>
                             <td>{meal.status}</td>
-                            <td><button onClick={() => handleDeliver(meal._id)} className="px-6 py-2 bg-myColor font-semibold text-white rounded-lg hover:scale-110 transition-all ease-in-out" >Deliver</button></td>
+                            {
+                                meal.status === 'delivered' ? <td></td> : <td><button onClick={() => handleDeliver(meal._id)} className={"px-6 py-2 bg-myColor font-semibold text-white rounded-lg hover:scale-110 transition-all ease-in-out"} >Deliver</button></td>
+                            }
                         </tr>)
                         }
                     </tbody>

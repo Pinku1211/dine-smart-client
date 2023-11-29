@@ -21,7 +21,7 @@ const TabSection = () => {
 
 
     return (
-        <div className='py-16 bg-slate-200'>
+        <div className='py-16 bg-slate-100'>
             <Container>
                 <Header title='Our Categories'></Header>
                 <Tab.Group>

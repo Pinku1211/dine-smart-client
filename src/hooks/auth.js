@@ -21,12 +21,30 @@ export const saveOrderedMeal = async (meal, user) =>{
         meal_title: meal?.meal_title,
         email: user?.email,
         user_name: user?.displayName,
+        likes: meal?.likes,
+        reviews: meal?.reviews?.length,
         status: 'Pending',
     }
     const {data} = await axiosSecure.post(`/requestedMeals`, requestedMeal)
 
     return data;
 }
+
+// get users ordered meals
+export const getUserOrderMeal = async email => {
+    const axiosSecure = useAxiosSecure();
+    const {data} = await axiosSecure.get(`/requestedMeals/${email}`);
+    return data
+}
+
+// delete req meal
+export const deleteReqMeal = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.delete(`/requestedMeals/${id}`)
+    return data;
+}
+
+
 // update meal status
 export const updateMealStatus = async id => {
     const axiosSecure = useAxiosSecure()
@@ -102,4 +120,9 @@ export const updateMeal = async (id, newMeal) => {
     const axiosSecure =useAxiosSecure()
     const {data} = await axiosSecure.put(`/dashboard/all-meals/meal/${id}`, newMeal)
 }
-// 
+// ----------
+export const getAdminsMeals = async (email) => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.get(`/meals/${email}`)
+    return data
+}

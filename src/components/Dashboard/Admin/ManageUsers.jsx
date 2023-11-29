@@ -31,17 +31,17 @@ const ManageUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {
+                    {
                        users?.map((user, idx) => <tr key={user._id}>
                        <th>{1 + idx}</th>
-                       <td>{user.name}</td>
-                       <td>{user.email}</td>
+                       <td>{`${user.name}`}</td>
+                       <td>{`${user.email}`}</td>
                        {
                         user.role === 'admin' ? <td className="text-green-500">Admin</td> : <td><button onClick={() => handleMakeAdmin(user._id)} className="px-6 py-2 bg-slate-100 font-semibold text-myColor hover:scale-110 border-b-4 border-myColor rounded-xl">Make Admin</button></td>
                        }
-                       <td>{user.status}</td>
+                       <td>{`${user.status}`}</td>
                    </tr>) 
-                    } */}
+                    }
                     
                 </tbody>
             </table>
