@@ -56,7 +56,7 @@ const AllMeals = () => {
                                 <th>{1 + idx}</th>
                                 <td>{meal.meal_title}</td>
                                 <td>{meal.likes}</td>
-                                <td>{meal.likes}</td>
+                                <td>{meal.reviews}</td>
                                 <td>{meal.admin_name}</td>
                                 <td>{meal.admin_email}</td>
                                 <td><Link to={`update/${meal._id}`}><button className="px-6 py-2 bg-myColor font-semibold text-green-800 hover:scale-110 rounded-xl"><MdOutlineSystemUpdateAlt></MdOutlineSystemUpdateAlt></button></Link></td>

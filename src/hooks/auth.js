@@ -108,6 +108,23 @@ export const addMeal = async meal => {
     const {data} = await axiosSecure.post('/meals', meal)
     return data;
 }
+// add to upcoming
+export const addMealToUpcoming = async meal => {
+    const axiosSecure = useAxiosSecure();
+    const {data} = await axiosSecure.post('/upcomingMeals', meal)
+    return data;
+}
+//  get an upcoming meal
+export const getLike = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.put(`/upcomingMeals/${id}`)
+    return data;
+}
+export const getDislike = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.put(`/upcomingMeal/${id}`)
+    return data;
+}
 
 // delete meal
 export const deleteMeal = async id => {

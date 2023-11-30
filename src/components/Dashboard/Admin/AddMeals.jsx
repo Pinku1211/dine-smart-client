@@ -2,21 +2,19 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import Header from '../../Shared/Header/Header';
 import useAuth from '../../../hooks/useAuth';
-import { addMeal } from '../../../hooks/auth';
+import { addMeal, addMealToUpcoming } from '../../../hooks/auth';
 import { imageUpload } from '../../../hooks/imageUpload';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
+
 const AddMeals = () => {
     const { user } = useAuth()
     const navigate = useNavigate()
-    const { register, handleSubmit, watch, control, formState: { errors }} = useForm()
-    const [upcomingMeal, setUpcomingMeal] = useState(null)
-    console.log(watch("meal-type"))
+    const { register, handleSubmit, watch, control, formState: { errors }} = useForm();
 
     const onSubmit = async (data) => {
         console.log(data)
-        console.log()
         const image = data?.meal_image[0]
         const imageData = await imageUpload(image)
         const meal_title = data?.meal_title
@@ -28,17 +26,11 @@ const AddMeals = () => {
         const rating = data?.rating
         const post_time = data?.post_time
         const likes = parseInt(data?.likes)
+        const reviews = []
         const admin_name = data?.admin_name
         const admin_email = data?.admin_email
-        const newMeal = { meal_title, meal_type, meal_image, ingredients, description, price, rating, post_time, likes, admin_name, admin_email }
-
-        const clickedButton = watch('submitButton');
-         
-        if(clickedButton === 'add-meal') {
-            console.log('add-meal')
-        }else if (clickedButton === 'add-to-upcoming'){
-            console.log('upcoming')
-        }
+        const newMeal = { meal_title, meal_type, meal_image, ingredients, description, price, rating, post_time, likes, reviews, admin_name, admin_email }
+         console.log(newMeal)
 
         try {
             await addMeal(newMeal)
@@ -48,12 +40,36 @@ const AddMeals = () => {
             console.log(error)
             toast.error("oops! something wrong.")
         }
-
         
     }
-    // const handleAddToUpcoming = () => {
-    //     console.log('upcoming', upcomingMeal)
-    // }
+
+    const addToUpcoming = async (data) => {
+        console.log('clicked', data)
+        const image = data?.meal_image[0]
+        const imageData = await imageUpload(image)
+        const meal_title = data?.meal_title
+        const meal_type = data?.meal_type
+        const meal_image = imageData?.data?.display_url
+        const ingredients = data?.ingredients
+        const description = data?.description
+        const price = parseInt(data?.price)
+        const rating = data?.rating
+        const post_time = data?.post_time
+        const likes = parseInt(data?.likes)
+        const reviews = []
+        const admin_name = data?.admin_name
+        const admin_email = data?.admin_email
+        const newMeal = { meal_title, meal_type, meal_image, ingredients, description, price, rating, post_time, likes, reviews,admin_name, admin_email }
+        try {
+            await addMealToUpcoming(newMeal)
+            toast.success("successfully added")
+            navigate('/dashboard/upcoming-meals')
+        } catch (error) {
+            console.log(error)
+            toast.error("oops! something wrong.")
+        }
+
+    }
 
 
     return (
@@ -181,18 +197,15 @@ const AddMeals = () => {
                     {errors.email && <span className='text-red-600'>Email is required</span>}
                 </div>
                 <button
-                 
-                    type="submit"
-                    name="submitButton"
-                    value="add-meal"
+                    name="add"
+                    type='submit'
                     className="block w-full rounded-lg bg-myColor px-5 py-3 text-sm font-medium text-white"
                 >
                     Add Meal
                 </button>
                 <button
-                    type='submit'
-                    name="submitButton"
-                    value="add-to-upcoming"
+                    onClick={handleSubmit(addToUpcoming)}
+                    name="upcoming"
                     className="block w-full rounded-lg bg-myColor px-5 py-3 text-sm font-medium text-white"
                 >
                     Add to Upcoming

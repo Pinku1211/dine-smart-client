@@ -7,8 +7,8 @@ const TabCard = ({ meal }) => {
 
     return (
         <div className="card bg-base-100 shadow-xl pb-8">
-            <figure><img className='w-full h-56' src={meal_image} alt="Shoes" /></figure>
-            <div className="card-body text-center">
+            <figure><img className='w-full h-64' src={meal_image} alt="Shoes" /></figure>
+            <div className="card-body">
                 <h2 className="text-2xl font-bold text-myColor">{meal_title}</h2>
                 <p className='text-myColor font-semibold'>Price: ${price}</p>
                 <p className='text-myColor font-semibold'>Rating: {rating}</p>

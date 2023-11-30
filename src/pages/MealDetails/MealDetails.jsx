@@ -31,14 +31,15 @@ const MealDetails = () => {
             <Container>
                 <Header title='Our Latest Item' subTitle='Test the Food'></Header>
                 <div className="card lg:card-side bg-base-100 shadow-xl">
-                    <figure><img className='w-full h-96 lg:h-full lg:w-3/4' src={meal_image} alt="Album" /></figure>
-                    <div className="card-body">
+                    <figure className="flex-1"><img className='w-full h-96 lg:h-full object-cover' src={meal_image} alt="Album" /></figure>
+                    <div className="card-body flex-1">
                         <h2 className="text-2xl font-bold text-myColor">{meal_title}</h2>
                         <p className='text-myColor font-semibold'>Distributor: {admin_name}</p>
                         <p className='text-myColor font-semibold'>Description: {description}</p>
                         <p className='text-myColor font-semibold'>Ingredients: {ingredients}</p>
                         <p className='text-myColor font-semibold'>Post Time: {post_time}</p>
                         <p className='text-myColor font-semibold'>Rating: {rating}</p>
+                        <p className='text-myColor font-semibold'>Price: {price}</p>
                         <div className="flex justify-between items-center gap-8">
                             <div className="flex flex-col justify-center items-center">
                                 <button onClick={() => setLike(true)} className={` ${like ? "px-6 py-2 bg-white font-semibold text-red-500 rounded-xl mt-4" : "px-6 py-2 bg-slate-100 font-semibold text-red-500 rounded-xl mt-4 hover:scale-125 transition-all ease-in-out"}`}><FaHeart className={`${like ? "text-4xl" : "text-2xl"}`}></FaHeart></button>

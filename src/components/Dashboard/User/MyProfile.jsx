@@ -12,7 +12,7 @@ import Header from '../../Shared/Header/Header';
 const MyProfile = () => {
     const { user } = useAuth();
     const [status] = useStatus()
-    let badgeImg = silverBadge
+    let badgeImg = null
     if (status === "Gold") {
         badgeImg = goldBadge
     } else if (status === "Platinum") {
@@ -41,10 +41,12 @@ const MyProfile = () => {
                                 <h1 className='text-2xl'>Bronze</h1>
                                 <img className='w-28' src={bronzeBadge} alt="" />
                             </div>
-                            <div className='flex flex-col items-center'>
-                                <h1 className='text-2xl'>{status}</h1>
-                                <img className='w-28' src={badgeImg} alt="" />
-                            </div>
+                            {
+                                badgeImg && <div className='flex flex-col items-center'>
+                                    <h1 className='text-2xl'>{status}</h1>
+                                    <img className='w-28' src={badgeImg} alt="" />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
