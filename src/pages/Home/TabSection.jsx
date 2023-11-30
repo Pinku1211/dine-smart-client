@@ -21,21 +21,21 @@ const TabSection = () => {
 
 
     return (
-        <div className='py-16 bg-slate-100'>
+        <div className='py-16 bg-base-200'>
             <Container>
                 <Header title='Our Categories'></Header>
                 <Tab.Group>
-                    <Tab.List className="flex space-x-1 rounded-xl bg-gradient-to-r from-cyan-500 to-myColor  p-1 w-1/2 mx-auto">
+                    <Tab.List className="flex space-x-1 rounded-xl bg-gradient-to-r from-slate-200 to-base-300  p-1 w-1/2 mx-auto">
                         {Object.keys(categories).map((category, idx) => (
                             <Tab
                                 key={category}
                                 className={({ selected }) =>
                                     classNames(
                                         'w-full rounded-lg py-2.5 text-sm font-medium leading-5',
-                                        'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+                                        'ring-white/60 ring-offset-2 ring-offset-myColor focus:outline-none focus:ring-2',
                                         selected
                                             ? 'bg-white text-myColor shadow'
-                                            : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
+                                            : ' hover:bg-white/[0.12]'
                                     )
                                 }
                             >

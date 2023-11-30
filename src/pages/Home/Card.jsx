@@ -10,7 +10,7 @@ const Card = () => {
                     <h2 className="card-title">New Recipe is released!</h2>
                     <p>Click the button to learn more</p>
                     <div className="card-actions justify-start">
-                        <button className="btn btn-primary">Learn More</button>
+                        <button className="px-6 py-2 bg-slate-100 font-semibold text-myColor hover:scale-110 border-b-4 border-myColor rounded-xl">Learn More</button>
                     </div>
                 </div>
             </div>

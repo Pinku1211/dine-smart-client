@@ -1,13 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from './useAxiosSecure';
 
-const useReqMeal = () => {
+const useReqMeal = (search, email) => {
     const axiosSecure = useAxiosSecure()
     // use query
     const {refetch, data: reqMeals=[]} = useQuery({
-        queryKey: ['meals'],
+        queryKey: ['meals', search, email],
         queryFn: async () => {
-            const response = await axiosSecure.get(`/requestedMeals`)
+            if(!search){
+                search = ['']
+            }
+            if(!email){
+                email = ['']
+            }
+            const response = await axiosSecure.get(`/requestedMeals?sort=${search}&searchedEmail=${email}`)
             return response.data;
         }
     })

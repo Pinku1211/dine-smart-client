@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Container from '../../components/Shared/Container';
 import useMeals from '../../hooks/useMeals';
 import TabCard from '../Home/TabCard';
 import Header from '../../components/Shared/Header/Header';
+import { Empty } from 'rizzui';
+
 
 const Meals = () => {
-    const [price, setPrice] = useState([0, 100])
+    const [price, setPrice] = useState([0, 500])
     const [searchText, setSearchText] = useState('')
     const [category, setCategory] = useState('')
-    const [meals] = useMeals()
-    console.log(meals)
-    console.log(price)
-    console.log(searchText)
-    console.log(category)
+    const [meals] = useMeals(price, searchText, category)
     const handleSubmit = e => {
         e.preventDefault()
         setSearchText('')
@@ -24,16 +22,12 @@ const Meals = () => {
     }
 
     const handleCategory = e => {
-        e.preventDefault()
-        setCategory('')
         const form = e.target;
         const searchedCategory = form.value
         setCategory(searchedCategory)
 
     }
     const handlePrice = e => {
-        e.preventDefault()
-        setPrice([1, 100])
         const form = e.target;
         const searchedPrice = [parseInt(form.value.split('-')[0]), parseInt(form.value.split('-')[1])]
         setPrice(searchedPrice)
@@ -53,7 +47,7 @@ const Meals = () => {
                             <input name='title' type="text" placeholder="Search meal by title" className="input input-bordered input-accent rounded-r-none w-full" />
                         </div>
                         <div class="sm:pt-0 grid ">
-                            <button type='submit' class="px-2 inline-flex justify-center items-center gap-2 rounded-r-lg border border-transparent font-semibold bg-myColor text-white focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-2 transition-all text-sm" href="#">
+                            <button type='submit' class="px-2 inline-flex justify-center items-center gap-2 rounded-r-lg border border-transparent font-semibold bg-myColor text-white focus:outline-none transition-all text-sm" href="#">
                                 Search
                             </button>
                         </div>
@@ -71,11 +65,18 @@ const Meals = () => {
                         <option>15 - 20</option>
                     </select>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    {
-                        meals?.map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
-                    }
-                </div>
+
+                {
+                   meals.length === 0 ?  <Empty text="No Data" textClassName="mt-2" /> 
+                   : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                   {
+                       meals?.map(meal => <TabCard key={meal._id} meal={meal}></TabCard>)
+                   }
+               </div>
+                }
+
+                
+                
             </Container>
         </div>
     );

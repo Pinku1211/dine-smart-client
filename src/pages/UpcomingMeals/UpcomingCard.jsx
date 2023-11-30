@@ -12,10 +12,10 @@ const UpcomingCard = ({ meal, refetch }) => {
             if (!liked) {
                 await getLike(id)
                 await refetch()
-            }else{
+            } else {
                 await getDislike(id)
                 await refetch()
-            }         
+            }
 
         } catch (error) {
             console.log(error)
@@ -42,6 +42,7 @@ const UpcomingCard = ({ meal, refetch }) => {
                 }
             </div>
         </div>
+        
     );
 };
 

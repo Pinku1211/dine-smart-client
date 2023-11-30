@@ -115,6 +115,11 @@ export const addMealToUpcoming = async meal => {
     return data;
 }
 //  get an upcoming meal
+export const getAnUpcomingMeal = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.get(`/upcomingMeals/${id}`)
+    return data;
+}
 export const getLike = async id => {
     const axiosSecure = useAxiosSecure()
     const {data} = await axiosSecure.put(`/upcomingMeals/${id}`)

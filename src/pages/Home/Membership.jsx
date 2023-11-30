@@ -14,11 +14,12 @@ const Membership = () => {
             <Container>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
                     <article
-                        className="hover:animate-background rounded-xl bg-gradient-to-r from-cyan-500 to-myColor p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+                        className="hover:animate-background rounded-xl border-2 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
                     >
                         <div className='flex justify-center'>
                             <img className='w-32' src={silverBadge} alt="" />
                         </div>
+                        <div className="divider divider-success px-32"></div>
                         <div className="rounded-[10px] bg-white p-4 sm:p-6 flex justify-center">
                             <div>
                                 <h3 className="mt-0.5 text-2xl font-bold text-gray-900">
@@ -79,11 +80,12 @@ const Membership = () => {
                         </div>
                     </article>
                     <article
-                        className="hover:animate-background rounded-xl bg-gradient-to-r from-cyan-500 to-myColor p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+                        className="hover:animate-background rounded-xl p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
                     >
                         <div className='flex justify-center'>
                             <img className='w-32' src={goldBadge} alt="" />
                         </div>
+                        <div className="divider divider-success px-32"></div>
                         <div className="rounded-[10px] bg-white p-4 sm:p-6 flex justify-center">
                             <div>
                                 <h3 className="mt-0.5 text-2xl font-bold text-gray-900">
@@ -144,11 +146,12 @@ const Membership = () => {
                         </div>
                     </article>
                     <article
-                        className="hover:animate-background rounded-xl bg-gradient-to-r from-cyan-500 to-myColor p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
+                        className="hover:animate-background rounded-xl p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]"
                     >
                         <div className='flex justify-center'>
                             <img className='w-32' src={platinumBadge} alt="" />
                         </div>
+                        <div className="divider divider-success px-32"></div>
                         <div className="rounded-[10px] bg-white p-4 sm:p-6 flex justify-center">
                             <div>
                                 <h3 className="mt-0.5 text-2xl font-bold text-gray-900">
