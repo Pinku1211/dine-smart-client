@@ -1,7 +1,7 @@
 import React from 'react';
 import useMeals from '../../../hooks/useMeals';
 import Header from '../../Shared/Header/Header';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { BsTrash } from "react-icons/bs";
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
 import Swal from 'sweetalert2';
@@ -60,7 +60,7 @@ const AllMeals = () => {
                                 <td>{`${meal.admin_name}`}</td>
                                 <td>{`${meal.admin_email}`}</td>
                                 <td><Link to={`update/${meal._id}`}><button className="px-6 py-2 bg-myColor font-semibold text-green-800 hover:scale-110 rounded-xl"><MdOutlineSystemUpdateAlt></MdOutlineSystemUpdateAlt></button></Link></td>
-                                <td><button onClick={() => handleDelete(meal._id)} className="px-6 py-2 font-semibold text-myColor bg-red-300 hover:scale-110 rounded-xl"><BsTrash></BsTrash></button></td>
+                                <td><button onClick={() => handleDelete(meal._id)} className="px-6 py-2 font-semibold text-myColor hover:scale-110 rounded-xl"><BsTrash></BsTrash></button></td>
                                 <td><Link to={`meal/${meal._id}`}><button className="px-6 py-2 bg-slate-100 font-semibold text-myColor hover:scale-110 border-b-4 border-myColor rounded-xl">Details</button></Link></td>
                             </tr>)
                         }

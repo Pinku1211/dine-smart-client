@@ -120,6 +120,12 @@ export const getAnUpcomingMeal = async id => {
     const {data} = await axiosSecure.get(`/upcomingMeals/${id}`)
     return data;
 }
+// delete an upcoming meal
+export const deleteUpcomingMeal = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.delete(`/upcomingMeals/${id}`)
+}
+
 export const getLike = async id => {
     const axiosSecure = useAxiosSecure()
     const {data} = await axiosSecure.put(`/upcomingMeals/${id}`)

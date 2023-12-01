@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import { BounceLoader } from 'react-spinners'
+import { PropagateLoader } from 'react-spinners'
 
-const Loader = ({ smallHeight }) => {
-  return (
+const Loader = ({ smallHeight, show }) => {
+  return show && (
     <div
-      className={` ${smallHeight ? 'h-[250px]' : 'h-[70vh]'}
+      className={` ${smallHeight ? 'h-[25px]' : 'h-[100vh]'}
       flex 
       flex-col 
       justify-center 
       items-center `}
     >
-      <BounceLoader size={100} color='red' />
+      <PropagateLoader size={10} color='#219C90' />
     </div>
   )
 }

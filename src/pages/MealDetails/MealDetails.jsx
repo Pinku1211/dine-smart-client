@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import Container from "../../components/Shared/Container";
 import Header from "../../components/Shared/Header/Header";
 import { FaHeart } from "react-icons/fa6";
@@ -14,7 +14,6 @@ const MealDetails = () => {
     const meal = useLoaderData();
     const [users, refetch] = useUsers()
     const { meal_title, meal_image, rating, price, _id, admin_name, description, ingredients, post_time, reviews } = meal;
-
     const verifiedUser = users?.find(userDb => userDb.email === user.email)
     const handleOrder = async () => {
         try {
@@ -35,7 +34,7 @@ const MealDetails = () => {
         <div className="my-10">
             <Container>
                 <Header title='Our Latest Item' subTitle='Test the Food'></Header>
-                <div className="card rounded-lg lg:h-96 lg:card-side bg-base-100 shadow-xl">
+                <div className="card rounded-sm lg:h-96 lg:card-side bg-base-100 shadow-xl">
                     <figure className="flex-1"><img className='w-full h-96 lg:h-full object-cover' src={meal_image} alt="Album" /></figure>
                     <div className="card-body flex-1">
                         <h2 className="text-2xl font-bold text-myColor h-fit">{meal_title}</h2>
@@ -44,7 +43,7 @@ const MealDetails = () => {
                         <p className='font-semibold'>Ingredients: {ingredients}</p>
                         <p className='font-semibold'>Post Time: {post_time}</p>
                         <p className='font-semibold'>Rating: {rating}</p>
-                        <p className='font-semibold'>Price: {price}</p>
+                        <p className='font-semibold'>Price: ${price}</p>
                         <div className="flex justify-between items-center gap-8">
                             <div className="flex flex-col justify-center items-center">
                                 <button onClick={() => setLike(true)} className={` ${like ? "px-6 py-2 bg-white font-semibold text-red-500 rounded-xl mt-4" : "px-6 py-2 font-semibold text-red-500 rounded-xl mt-4 hover:scale-125 transition-all ease-in-out"}`}><FaHeart className={`${like ? "text-4xl" : "text-2xl"}`}></FaHeart></button>

@@ -2,7 +2,8 @@ import React from 'react';
 import useUpcoming from '../../../hooks/useUpcoming';
 import Header from '../../Shared/Header/Header';
 import { Empty } from 'rizzui';
-import { addMeal, getAnUpcomingMeal } from '../../../hooks/auth';
+import { addMeal, deleteUpcomingMeal, getAnUpcomingMeal } from '../../../hooks/auth';
+import toast from 'react-hot-toast';
 
 const Upcoming = () => {
     const [upcomingMeal, refetch] = useUpcoming()
@@ -14,6 +15,9 @@ const Upcoming = () => {
             console.log(meal)
             const newMeal = { meal_title: meal.meal_title, meal_type: meal.meal_type, meal_image: meal.meal_image, ingredients: meal.ingredients, description: meal.description, price: meal.price, rating: meal.rating, post_time: meal.post_time, likes: meal.likes, reviews: meal.reviews, admin_name: meal.admin_name, admin_email: meal.admin_email }
             await addMeal(newMeal)
+            await deleteUpcomingMeal(id)
+            toast.success("successfully published!")
+            await refetch()
 
         } catch (error) {
             console.log(error)
