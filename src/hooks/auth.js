@@ -3,6 +3,7 @@ import useAxiosSecure from "./useAxiosSecure"
 
 export const saveUser = async user =>{
     const axiosSecure = useAxiosSecure();
+   
     const currentUser = {
         name: user?.displayName,
         email: user?.email,
@@ -56,7 +57,7 @@ export const updateMealStatus = async id => {
 export const getToken = async email => {
     const axiosSecure = useAxiosSecure();
     const {data} = await axiosSecure.post('/jwt', email)
-    console.log("token -----", data)
+    console.log("token", data)
 
     return data; 
 }
@@ -108,6 +109,24 @@ export const addMeal = async meal => {
     const {data} = await axiosSecure.post('/meals', meal)
     return data;
 }
+// insert comment into the existing meal
+export const addComment = async (id, newComment) => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.put(`/addComment/${id}`, newComment)
+    return data;
+}
+//  delete a comment
+export const deleteComment = async (name, comment) => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.delete(`/comments/${name}/${comment}`)
+}
+// update a comment
+export const updateComment = async (name, comment, newComment) => {
+    const axiosSecure = useAxiosSecure()
+    console.log(newComment)
+    const {data} = await axiosSecure.put(`/comments/${name}/${comment}`, newComment)
+}
+
 // add to upcoming
 export const addMealToUpcoming = async meal => {
     const axiosSecure = useAxiosSecure();
@@ -125,12 +144,13 @@ export const deleteUpcomingMeal = async id => {
     const axiosSecure = useAxiosSecure()
     const {data} = await axiosSecure.delete(`/upcomingMeals/${id}`)
 }
-
+// get like
 export const getLike = async id => {
     const axiosSecure = useAxiosSecure()
     const {data} = await axiosSecure.put(`/upcomingMeals/${id}`)
     return data;
 }
+// get dislike
 export const getDislike = async id => {
     const axiosSecure = useAxiosSecure()
     const {data} = await axiosSecure.put(`/upcomingMeal/${id}`)

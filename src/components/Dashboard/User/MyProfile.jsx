@@ -11,12 +11,15 @@ import Header from '../../Shared/Header/Header';
 
 const MyProfile = () => {
     const { user } = useAuth();
-    const [status] = useStatus()
+    const [status] = useStatus();
     let badgeImg = null
     if (status === "Gold") {
         badgeImg = goldBadge
     } else if (status === "Platinum") {
         badgeImg = platinumBadge
+    }
+    else if (status === "Silver") {
+        badgeImg = silverBadge
     }
 
     return (

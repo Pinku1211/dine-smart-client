@@ -24,15 +24,15 @@ const SignUp = () => {
     const image = data.image[0]
     const imageData = await imageUpload(image)
     createUser(data.email, data.password)
-      .then(res => {
+      .then(async res => {
         const loggedUser = res.user
         console.log(loggedUser)
-        updateUserProfile(data.name, imageData?.data?.display_url)
+        await updateUserProfile(data?.name, imageData?.data?.display_url)
         navigate('/')
         toast.success("successfully signed up!")
-        
+
         // save user
-        const savedUser = saveUser(loggedUser)
+        const savedUser = await saveUser(loggedUser)
         console.log(savedUser)
 
         // token
@@ -61,7 +61,7 @@ const SignUp = () => {
       navigate('/')
       toast.success("successfully signed in!")
 
-    } catch(error){
+    } catch (error) {
       console.log(error)
 
     }

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { changeStatus } from "../../hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 
 const CheckoutForm = ({badge}) => {
@@ -13,6 +14,7 @@ const CheckoutForm = ({badge}) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate()
     console.log(badge)
     let price = 0;
     if(badge === 'Silver'){
@@ -78,7 +80,8 @@ const CheckoutForm = ({badge}) => {
                 toast.success("successfully paid")
                 const status = {badge}
                 changeStatus(user?.email, status)
-                console.log(status)
+                navigate('/meals')
+
             }
         }
 

@@ -48,7 +48,7 @@ const MenuDropdown = () => {
         </div>
       </div>
       {isOpen && (
-        <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
+        <div className='absolute rounded-xl z-10 shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
           <div className='flex flex-col'>
             <h1 className='px-4 py-3 transition font-semibold text-rose-500'>{user?.displayName}</h1>
             <Link

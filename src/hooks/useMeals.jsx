@@ -17,7 +17,14 @@ const useMeals = (price, searchText, category) => {
             if(!category){
                 category = ['']
             }
-            const response = await axiosSecure.get(`/meals?sort=${price}&search=${searchText}&category=${category}`)
+            // if(!ascLike){
+            //     ascLike = false;
+            // }
+            // if(!ascRev){
+            //     ascRev = false;
+            // }
+
+            const response = await axiosSecure.get(`/meals?priceSort=${price}&search=${searchText}&category=${category}`)
             return response.data;
         }
     })

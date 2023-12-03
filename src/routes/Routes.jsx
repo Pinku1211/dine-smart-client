@@ -49,15 +49,31 @@ export const router = createBrowserRouter([
       {
         path: '/meal/:id',
         element: <Private><MealDetails></MealDetails></Private>,
-        loader: ({params}) => getMeal(params.id)
-      }
+        loader: ({ params }) => getMeal(params.id)
+      },
+
     ],
   },
-  { path: '/login', element: <Login /> },
-  { path: '/signup', element: <SignUp /> },
-  {path: '/checkout/silver', element: <Payment badge="Silver"></Payment>},
-  {path: '/checkout/gold', element: <Payment badge="Gold"></Payment>},
-  {path: '/checkout/platinum', element: <Payment badge="Platinum"></Payment>},
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/signup',
+    element: <SignUp />
+  },
+  {
+    path: '/checkout/silver',
+    element: <Payment badge="Silver"></Payment>
+  },
+  {
+    path: '/checkout/gold',
+    element: <Payment badge="Gold"></Payment>
+  },
+  {
+    path: '/checkout/platinum',
+    element: <Payment badge="Platinum"></Payment>
+  },
 
   {
     path: '/dashboard',
@@ -79,12 +95,12 @@ export const router = createBrowserRouter([
       {
         path: 'all-meals/meal/:id',
         element: <Private><MealDetails></MealDetails></Private>,
-        loader: ({params}) => getMeal(params.id)
+        loader: ({ params }) => getMeal(params.id)
       },
       {
         path: 'all-meals/update/:id',
         element: <Update></Update>,
-        loader: ({params}) => getMeal(params.id)
+        loader: ({ params }) => getMeal(params.id)
       },
       {
         path: 'all-reviews',
@@ -98,11 +114,16 @@ export const router = createBrowserRouter([
         path: 'upcoming-meals',
         element: <Upcoming></Upcoming>
       },
+      {
+        path: 'all-reviews/meal/:id',
+        element: <Private><MealDetails></MealDetails></Private>,
+        loader: ({ params }) => getMeal(params.id)
+      },
       // -------------------------------
       {
         path: 'profile',
         element: <AdminProfile></AdminProfile>,
-        
+
       },
       {
         path: 'my-profile',
@@ -115,7 +136,12 @@ export const router = createBrowserRouter([
       {
         path: 'my-reviews',
         element: <MyReviews></MyReviews>
-      }
+      },
+      {
+        path: 'my-reviews/meal/:id',
+        element: <Private><MealDetails></MealDetails></Private>,
+        loader: ({ params }) => getMeal(params.id)
+      },
     ]
   }
 ])
