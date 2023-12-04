@@ -2,10 +2,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { useForm } from 'react-hook-form'
 import useAuth from '../../hooks/useAuth'
-import Swal from 'sweetalert2'
 import { imageUpload } from '../../hooks/imageUpload'
 import { getToken, saveUser } from '../../hooks/auth'
-import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 const SignUp = () => {
@@ -67,8 +65,6 @@ const SignUp = () => {
     }
 
   }
-
-
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">

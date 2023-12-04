@@ -7,6 +7,7 @@ import Header from "../../Shared/Header/Header";
 const ManageUsers = () => {
     const [users, refetch] = useUsers()
     console.log(users)
+    
     const handleMakeAdmin = async id => {
         console.log(id)
         try{

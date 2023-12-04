@@ -2,7 +2,7 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
-import avatarImg from '../../../assets/images/placeholder.jpg'
+import anonymousImg from '../../../assets/images/anonymous.jpg'
 import Swal from 'sweetalert2'
 import useRole from '../../../hooks/useRole'
 
@@ -39,7 +39,7 @@ const MenuDropdown = () => {
             <img
               className='rounded-full'
               referrerPolicy='no-referrer'
-              src={user ? user.photoURL : avatarImg}
+              src={user ? user.photoURL : anonymousImg}
               alt='profile'
               height='30'
               width='30'

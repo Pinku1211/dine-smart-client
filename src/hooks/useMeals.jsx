@@ -1,9 +1,11 @@
 
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from './useAxiosSecure';
+import useAxiosPublic from './useAxiosPublic';
 
 const useMeals = (price, searchText, category) => {
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     // use query
     const {refetch, data: meals=[]} = useQuery({
         queryKey: ['meals', price, searchText, category],

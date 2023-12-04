@@ -1,6 +1,6 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
-import avatarImg from '../../../assets/images/placeholder.jpg'
+import avatarImg from '../../../assets/images/anonymous.jpg'
 import Container from '../Container';
 
 

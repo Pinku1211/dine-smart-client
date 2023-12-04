@@ -10,10 +10,7 @@ import { arSA } from 'date-fns/locale';
 
 const AllReviews = () => {
     
-    const [ascLike, setAscLike] = useState(false)
-    const [ascRev, setAscRev] = useState(false)
     const [meals, refetch] = useMeals();
-    console.log(ascLike)
     // const allReviews = []
     // meals?.map(meal => { meal.reviews.map(review => allReviews.push(review)) })
     // console.log(allReviews)
@@ -41,16 +38,6 @@ const AllReviews = () => {
         <div>
             <div className="overflow-x-auto">
                 <Header title="All Reviews"></Header>
-                <center>
-                    
-                    <button 
-                    onClick={()=> setAscLike(!ascLike)}
-                    className={`px-6 py-2 mr-10 ${ascLike && "bg-slate-100 border-none"} font-semibold text-myColor hover:scale-110 border-slate-200 border-2 rounded-sm`}>Likes: <span>{`${ascLike ? "High to Low" : "Low to High"}`}</span></button>
-                    <button 
-                    onClick={()=> setAscRev(!ascRev)}
-                    className={`px-6 py-2 ${ascRev && "bg-slate-100 border-none"} font-semibold text-myColor hover:scale-110 border-slate-200 border-2 rounded-sm`}>Reviews: <span>{`${ascRev ? "High to Low" : "Low to High"}`}</span></button>
-                    <h1 className='mb-10 mt-3 font-thin text-myColor'>See meals based on likes and reviews count</h1>
-                </center>
                 <table className="table">
                     {/* head */}
                     <thead>

@@ -1,46 +1,49 @@
 import { useLoaderData } from "react-router-dom";
 import Container from "../../components/Shared/Container";
 import Header from "../../components/Shared/Header/Header";
-import { FaHeart } from "react-icons/fa6";
-import { useEffect, useState } from "react";
-import { addComment, saveOrderedMeal } from "../../hooks/auth";
+import { addComment, addLike, addLikedMeal, saveOrderedMeal } from "../../hooks/auth";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useUsers from "../../hooks/useUsers";
-import avatarImg from '../../assets/images/placeholder.jpg';
+import avatarImg from '../../assets/images/anonymous.jpg';
 import { AiOutlineLike } from "react-icons/ai";
 import { AiFillLike } from "react-icons/ai";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 const MealDetails = () => {
-    // const axiosSecure = useAxiosSecure();
-    const [like, setLike] = useState(false)
     const { user } = useAuth()
     const meal = useLoaderData();
-    const [users] = useUsers()
+    const [users, refetch] = useUsers();
     const { meal_title, meal_image, rating, price, _id, admin_name, description, likes, ingredients, post_time, reviews } = meal;
-    const verifiedUser = users?.find(userDb => userDb.email === user.email);
+    const currentUser = users?.find(userDb => userDb.email === user.email);
     const [postedComment, setPostedComment] = useState(reviews)
-    console.log(postedComment)
-    // useEffect(()=> {
-    //   const data = localStorage.getItem('like_status');
-    //   setLike(JSON.parse(data))
-    // },[])
-    // useEffect(()=> {
-    //     localStorage.setItem('like_status', JSON.stringify(like))
-    // },[like])
+    console.log(currentUser)
+    let like = false
+    if(currentUser?.likedMeals.includes(meal_title)){
+        like = true
+    }
 
-    // console.log(like)
-    // if(like){
-    //     axiosSecure.put(`/like/${_id}`);
-    // }else{
-    //     axiosSecure.put(`/dislike/${_id}`)
-    // }
+    const handleLike = async () => {    
+        const mealTitle = {meal_title}
+        if(!currentUser.likedMeals.includes(meal_title)){
+            try {
+                await addLikedMeal(currentUser?.email, mealTitle)
+                await addLike(_id)
+                await refetch()
+                like = true
+    
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
+
+    }
 
     const handleOrder = async () => {
         try {
             // save user to the database
-            if (verifiedUser.status != "Bronze") {
+            if (currentUser.status != "Bronze") {
                 await saveOrderedMeal(meal, user)
                 toast.success("successfully ordered!")
             } else {
@@ -82,7 +85,7 @@ const MealDetails = () => {
                         <p className='font-semibold text-gray-500'>Likes: {likes}</p>
                         <div className="flex justify-between items-center gap-8">
                             <div className="flex flex-col justify-center items-center">
-                                <button onClick={() => setLike(!like)} className={` ${like ? "px-6 py-2 bg-white font-semibold text-red-500 rounded-xl mt-4" : "px-6 py-2 font-semibold text-red-500 rounded-xl mt-4 hover:scale-125 transition-all ease-in-out"}`}>{like ? <AiFillLike className="text-4xl"></AiFillLike> : <AiOutlineLike className="text-4xl"></AiOutlineLike>}</button>
+                                <button onClick={handleLike} className={` ${like ? "px-6 py-2 bg-white font-semibold text-red-500 rounded-xl mt-4" : "px-6 py-2 font-semibold text-red-500 rounded-xl mt-4 hover:scale-125 transition-all ease-in-out"}`}>{like ? <AiFillLike className="text-4xl"></AiFillLike> : <AiOutlineLike className="text-4xl"></AiOutlineLike>}</button>
                                 {/* <h1 className={`${like ? "text-red-400 font-bold" : "text-myColor mb-4 font-bold"}`}>
                                     {
                                         like ? "Thanks for the love" : "Please like us"

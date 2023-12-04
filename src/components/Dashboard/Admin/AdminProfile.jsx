@@ -1,7 +1,7 @@
 
 import useAuth from '../../../hooks/useAuth';
 import Container from '../../Shared/Container';
-import avatarImg from '../../../assets/images/placeholder.jpg'
+import avatarImg from '../../../assets/images/anonymous.jpg'
 import useAdminMeal from '../../../hooks/useAdminMeal';
 
 const AdminProfile = () => {

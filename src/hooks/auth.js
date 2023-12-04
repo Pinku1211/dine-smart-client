@@ -9,9 +9,9 @@ export const saveUser = async user =>{
         email: user?.email,
         role: 'user',
         status: 'Bronze',
+        likedMeals : []
     }
     const {data} = await axiosSecure.put(`/users/${user?.email}`, currentUser)
-
     return data;
 }
 
@@ -70,7 +70,7 @@ export const clearToken = async () => {
 
 }
 
-// get user role
+// get user role----------------------------
 export const getRole = async email => {
     const axiosSecure = useAxiosSecure();
     const {data} = await axiosSecure.get(`/user/${email}`);
@@ -102,8 +102,20 @@ export const makeAdmin = async id => {
     const {data} = await axiosSecure.put(`/user1/${id}`)
     return data;
 }
+// push like and meals name into the users collection
+export const addLikedMeal = async (email, mealTitle) => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.put(`/addLike/${email}`, mealTitle)
+    return data;
+}
+export const addLike = async id => {
+    const axiosSecure = useAxiosSecure()
+    const {data} = await axiosSecure.put(`/increase/${id}`)
+    return data;
+}
 
-// add meal
+
+// add meal-----------------------------------
 export const addMeal = async meal => {
     const axiosSecure = useAxiosSecure();
     const {data} = await axiosSecure.post('/meals', meal)

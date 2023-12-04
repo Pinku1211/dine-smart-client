@@ -2,7 +2,7 @@ import axios from 'axios';
 import { clearToken } from './auth';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://dine-master-server.vercel.app',
     withCredentials: true,
 })
 
@@ -17,7 +17,7 @@ const useAxiosSecure = () => {
             return Promise.reject(error)
         }  
     )
-       
+    
     return axiosSecure;
 
 };
