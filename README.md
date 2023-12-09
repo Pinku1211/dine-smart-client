@@ -1,7 +1,7 @@
 
 <h1 align='center'><img width='40' src="./public/logo.png" alt="1211" />dineSmart</h1>
-## live_link: https://dinesmart-a232f.web.app
-## server-side-repo: https://github.com/Pinku1211/dine-smart-server
+ live_link: https://dinesmart-a232f.web.app
+<p>server-side-repo: https://github.com/Pinku1211/dine-smart-server</p>
 
 ## Features
 *  A full MERN stake website for hostel management
